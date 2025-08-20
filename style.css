@@ -1,4 +1,115 @@
 ﻿/* Kasil styles (testing) */
-body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; padding: 2rem; }
-h1 { margin: 0 0 0.5rem 0; }
-p { color: #555; }
+:root{
+    --main-color: #363636; /*gray*/
+    --secondary-color: #1b998b; /* greenish */
+}
+
+* {
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box;
+}
+
+
+body { 
+    font-family: "Noto Sans", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--main-color);
+    min-height: 200vh; /* added extra height for scroll demo */ 
+}
+
+h1 {
+     margin: 0 0 0.5rem 0;
+}
+
+p { 
+    color: #555; 
+}
+
+
+/* nav bar css */
+
+.navbar {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* keep nav bar as the front most element */
+    padding: 20px 40px;
+    background: transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* on scroll */
+.navbar.scrolled {
+    background: rgba(54, 54, 54, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 15px 40px;
+}
+
+.navbar.hidden {
+    transform: translateY(-100%);
+}
+
+.navbar-container {
+    margin: 0 auto;
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.logo{
+    padding: 3px;
+    height: 30px;
+    transition: height 0.3s ease;
+    cursor: pointer; 
+    opacity: 0.7;
+ }
+
+ .logo:hover {  
+    opacity: 1.0;
+}
+
+ .nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+ }
+
+ .nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    transition: opacity 0.3s ease;
+    padding: 5px 0;
+    opacity: 0.6;
+}
+
+.nav-link:hover {
+    opacity: 1.0;
+}
+
+/* underline animation on hover */
+.nav-link::after{
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
