@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const logo = document.getElementById('logo');
 
   const h1 = document.querySelector('h1');
-  if (h1) h1.insertAdjacentHTML('afterend', '<p id="js-ok">JS is working ✅</p>');
+  // if (h1) h1.insertAdjacentHTML('afterend', '<p id="js-ok">JS is working ✅</p>');
 
   // Scroll event listener
   window.addEventListener('scroll', () => {
@@ -44,4 +44,49 @@ document.addEventListener('DOMContentLoaded', () => {
       this.classList.add('active');
     });
   });
+});
+
+// Contact form handling
+document.addEventListener('DOMContentLoaded', () => {
+  const contactForm = document.getElementById('contactForm');
+  
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent default form submission
+      
+      // Get form data
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value
+      };
+      
+      // Basic validation
+      if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+        alert('Please fill in all fields.');
+        return;
+      }
+      
+      // Simulate form submission
+      const submitBtn = document.querySelector('.submit-btn');
+      const originalText = submitBtn.textContent;
+      
+      // Show loading state
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+      
+      // Simulate API call with timeout
+      setTimeout(() => {
+        alert('Thank you for your message! We will get back to you soon.');
+        
+        // Reset form
+        contactForm.reset();
+        
+        // Reset button
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }, 1500);
+    });
+  }
 });
